@@ -7,7 +7,7 @@ def custom_each(&block)
   length = self.length
   i = 0
   while i < length do
-    block.call(self[i])
+    yield(self[i])
     i += 1
   end
   return self
@@ -16,20 +16,29 @@ end
 def custom_map(&block)
   result = []
   self.custom_each do |i|
-    result << block.call(i)
+    result << yield(i)
   end
   result
 end
 
-# each = my_array.custom_each do |i|
-#   puts i*100
-# end
+each = my_array.custom_each do |i|
+  puts i*100
+end
 # puts each --> render original value of the array
 
-map = my_array.custom_map do |i|
-  i * 10
-end
-puts map
+# map = my_array.custom_map do |i|
+#   i * 10000
+# end
+# puts map
+
+# for i in my_array
+#   puts i*10
+# end
+# i = 0
+# while i <= my_array.size do
+#   puts i*10
+#   i += 1
+# end 
 
 
 
